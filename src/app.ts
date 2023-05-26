@@ -9,8 +9,10 @@ function autobind(
     configurable: true,
     get() {
       const boundFn = originalMethod.bind(this);
+      return boundFn;
     }
-  }
+  };
+  return adjDescriptor;
 }
 
 // ProjectInput Class

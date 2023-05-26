@@ -4,9 +4,7 @@ class ProjectInput {
   element: HTMLFormElement;
 
   constructor() {
-    this.templateElement = document.getElementById(
-      "project-input"
-    )! as HTMLTemplateElement;
+    this.templateElement = document.getElementById("project-input")! as HTMLTemplateElement;
     this.hostElement = document.getElementById("app")! as HTMLDivElement;
 
     const importedNode = document.importNode(
@@ -14,6 +12,7 @@ class ProjectInput {
       true
     );
     this.element = importedNode.firstElementChild as HTMLFormElement;
+    this.element.id = 'user-input';
     this.attach();
   }
 

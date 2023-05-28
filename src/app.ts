@@ -1,11 +1,19 @@
 // validation logic
 interface Validatable {
   value: string | number;
-  required: boolean;
-  minLength: number;
-  maxLength: number;
-  min: number;
-  max: number;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+}
+
+function validate(validatableInput: Validatable) {
+  let isValid = true;
+  if (validatableInput.required) {
+    isValid = isValid && validatableInput.value.toString().trim().length !== 0;
+  }
+  return isValid;
 }
 
 // autobind decorator

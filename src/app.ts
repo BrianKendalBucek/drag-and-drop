@@ -20,6 +20,13 @@ function validate(validatableInput: Validatable) {
     isValid = isValid && validatableInput.value.length > validatableInput.minLength;
 
   }
+  if (
+    validatableInput.maxLength != null &&
+    typeof validatableInput.value === 'string'
+    ) {
+    isValid = isValid && validatableInput.value.length < validatableInput.maxLength;
+
+  }
   return isValid;
 }
 

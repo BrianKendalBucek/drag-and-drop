@@ -55,6 +55,14 @@ class ProjectInput {
     const enteredTitle = this.titleInputElement.value;
     const enteredDescription = this.descriptionInputElement.value;
     const enteredPeople = title.peopleInputElement.value;
+
+    if (
+      enteredTitle.trim().length === 0 || 
+      enteredDescription.trim().length === 0 || 
+      enteredPeople.trim().length === 0
+      ) {
+        
+      }
   }
 
   @autobind

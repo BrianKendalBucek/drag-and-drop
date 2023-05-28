@@ -107,9 +107,9 @@ class ProjectInput {
     };
 
     if (
-      validate({value: enteredTitle, required: true, minLength: 5}) &&
-      validate({value: enteredDescription, required: true, minLength: 5}) &&
-      validate({value: enteredPeople, required: true, minLength: 5})
+      !validate(titleValidatable) ||
+      !validate(descriptionValidatable) ||
+      !validate(peopleValidatable)
     ) {
       alert('Invalid input, please try again!');
       return;

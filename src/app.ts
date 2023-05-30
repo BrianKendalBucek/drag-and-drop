@@ -135,6 +135,10 @@ class Component<T extends HTMLElement, U extends HTMLElement> {
       this.element.id = newElementId;
     }
   }
+
+  private attach() {
+    this.hostElement.insertAdjacentElement("beforeend", this.element);
+  }
 }
 
 // ProjectList Class

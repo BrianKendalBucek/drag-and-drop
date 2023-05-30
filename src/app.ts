@@ -18,7 +18,7 @@ class Project {
 
 class ProjectState {
   private listeners: any[] = [];
-  private projects: any[] = [];
+  private projects: Project[] = [];
   private static instance: ProjectState;
 
   private constructor() {}
@@ -36,12 +36,13 @@ class ProjectState {
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
-    const newProject = {
-      id: Math.random().toString(),
-      title: title,
-      description: description,
-      people: numOfPeople,
-    };
+    const newProject = new Project(
+      Math.random().toString(),
+      title,
+      description,
+      numOfPeople,
+      ProjectStatus.Active
+    );
     this.projects.push(newProject);
     for (const listenerFn of this.listeners) {
       listenerFn(this.projects.slice());

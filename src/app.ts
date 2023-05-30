@@ -119,6 +119,7 @@ class Component<T extends HTMLElement, U extends HTMLElement> {
   constructor(
     templateId: string,
     hostElementId: string,
+    insertAtStart: boolean,
     newElementId?: string
   ) {
     this.templateElement = document.getElementById(
@@ -134,10 +135,15 @@ class Component<T extends HTMLElement, U extends HTMLElement> {
     if (newElementId) {
       this.element.id = newElementId;
     }
+
+    this.attach(insertAtStart);
   }
 
-  private attach() {
-    this.hostElement.insertAdjacentElement("beforeend", this.element);
+  private attach(insertAtBeginning: boolean) {
+    this.hostElement.insertAdjacentElement(
+      insertAtBeginning ? "afterbegin" : "beforeend",
+      this.element
+    );
   }
 }
 

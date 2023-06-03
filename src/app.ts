@@ -157,8 +157,20 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
 
 // ProjectItem Class
 class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
-  constructor() {
-    super();
+  private project: Project;
+
+  constructor(hostId: string, project: Project) {
+    super('single-project', hostId, false, project.id);
+    this.project = project;
+    
+    this.configure();
+    this.renderContent();
+  }
+
+  configure() {}
+
+  renderContent() {
+    
   }
 }
 

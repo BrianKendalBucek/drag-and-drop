@@ -168,40 +168,48 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
 }
 
 // ProjectItem Class
-class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
+class ProjectItem
+  extends Component<HTMLUListElement, HTMLLIElement>
+  implements Draggable
+{
   private project: Project;
 
   get persons() {
     if (this.project.people === 1) {
-      return '1 person';
+      return "1 person";
     } else {
       return `${this.project.people} persons`;
     }
   }
 
   constructor(hostId: string, project: Project) {
-    super('single-project', hostId, false, project.id);
+    super("single-project", hostId, false, project.id);
     this.project = project;
-    
+
     this.configure();
     this.renderContent();
   }
 
+  dragStartHandler(event: DragEvent) {}
+  
+  dragEndHandler(event: DragEvent) {}
+
   configure() {}
 
   renderContent() {
-    this.element.querySelector('h2')!.textContent = this.project.title;
-    this.element.querySelector('h3')!.textContent = this.persons.toString() + ' assigned.';
-    this.element.querySelector('p')!.textContent = this.project.description;
+    this.element.querySelector("h2")!.textContent = this.project.title;
+    this.element.querySelector("h3")!.textContent =
+      this.persons.toString() + " assigned.";
+    this.element.querySelector("p")!.textContent = this.project.description;
   }
 }
 
 // ProjectList Class
-class ProjectList extends Component<HTMLDivElement, HTMLElement>{
+class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   assignedProjects: Project[];
 
   constructor(private type: "active" | "finished") {
-    super('project-list', 'app', false, `${type}-projects`);
+    super("project-list", "app", false, `${type}-projects`);
     this.assignedProjects = [];
 
     this.configure();
@@ -234,19 +242,19 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>{
     )! as HTMLUListElement;
     listEl.innerHTML = "";
     for (const prjItem of this.assignedProjects) {
-      new ProjectItem(this.element.querySelector('ul')!.id, prjItem);
+      new ProjectItem(this.element.querySelector("ul")!.id, prjItem);
     }
   }
 }
 
 // ProjectInput Class
-class ProjectInput extends Component<HTMLDivElement, HTMLFormElement>{
+class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
   titleInputElement: HTMLInputElement;
   descriptionInputElement: HTMLInputElement;
   peopleInputElement: HTMLInputElement;
 
   constructor() {
-    super('project-input', 'app', true, 'user-input');
+    super("project-input", "app", true, "user-input");
     this.titleInputElement = this.element.querySelector(
       "#title"
     ) as HTMLInputElement;

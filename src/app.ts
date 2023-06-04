@@ -192,7 +192,7 @@ class ProjectItem
 
   @autobind
   dragStartHandler(event: DragEvent) {
-    console.log(event);
+    event.dataTransfer!.setData
   }
 
   dragEndHandler(_: DragEvent) {

@@ -192,7 +192,8 @@ class ProjectItem
 
   @autobind
   dragStartHandler(event: DragEvent) {
-    event.dataTransfer!.setData
+    event.dataTransfer!.setData('text/plain', this.project.id);
+    event.dataTransfer!.effectAllowed = 'move';
   }
 
   dragEndHandler(_: DragEvent) {

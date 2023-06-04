@@ -191,12 +191,17 @@ class ProjectItem
   }
 
   @autobind
-  dragStartHandler(event: DragEvent) {}
-  
-  dragEndHandler(event: DragEvent) {}
+  dragStartHandler(event: DragEvent) {
+    console.log(event);
+  }
+
+  dragEndHandler(_: DragEvent) {
+    console.log('DragEnd');
+  }
 
   configure() {
     this.element.addEventListener('dragstart', this.dragStartHandler);
+    this.element.addEventListener('dragend', this.dragEndHandler);
   }
 
   renderContent() {
